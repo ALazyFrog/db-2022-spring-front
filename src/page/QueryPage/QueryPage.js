@@ -79,11 +79,11 @@ function QueryPage() {
         <div>
             <Header keyValue="query"/>
             <div className='border'>
-                <Input className='InputBox' style={{width: '80%'}}  placeholder="category" />
-                <Input className='InputBox' style={{width: '80%'}} placeholder="title" />
-                <Input className='InputBox' style={{width: '80%'}} placeholder="press" />
+                <Input className='InputBox' style={{width: '90%'}}  placeholder="category" />
+                <Input className='InputBox' style={{width: '90%'}} placeholder="title" />
+                <Input className='InputBox' style={{width: '90%'}} placeholder="press" />
                 <Input.Group compact>
-                    <Input addonBefore=" year " style={{ width: '26%', textAlign: 'center', marginLeft: '10%' }} placeholder="Minimum" />
+                    <Input addonBefore=" year " style={{ width: '26%', textAlign: 'center', marginLeft: '5%' }} placeholder="Minimum" />
                     <Input
                         className="site-input-split"
                         style={{
@@ -104,10 +104,10 @@ function QueryPage() {
                         placeholder="Maximum"
                     />
                     </Input.Group>
-                <Input className='InputBox' style={{width: '80%'}} placeholder="author" />
+                <Input className='InputBox' style={{width: '90%'}} placeholder="author" />
                 <Input.Group compact>
                     <Input addonBefore=" price " prefix="￥" style={{ width: '26%', textAlign: 'center',
-                             marginLeft: '10%'}} placeholder="Minimum" />
+                             marginLeft: '5%'}} placeholder="Minimum" />
                     <Input
                         className="site-input-split"
                         style={{

@@ -8,7 +8,7 @@ function AdminPage() {
             <Header keyValue="admin" />
             <div className='border'>
                 <Input className='InputBox'
-                    placeholder="user name" prefix={<UserOutlined />} />
+                    placeholder="username" prefix={<UserOutlined />} />
                 <Input.Password className='InputBox'
                     placeholder="password" prefix={<LockOutlined />} />
                 <Button className='Button' type="primary">
