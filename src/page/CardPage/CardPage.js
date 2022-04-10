@@ -2,6 +2,7 @@ import './CardPage.css';
 import Header from '../../component/Header/Header';
 import { Input, Button, Select } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone, UserOutlined, HomeOutlined, CreditCardOutlined } from '@ant-design/icons';
+import request from '../../util/request';
 const { Option } = Select;
 function handleChange(value) {
     console.log(`selected ${value}`);
@@ -19,7 +20,7 @@ function CardPage() {
                     <Option value="U">本科生</Option>
                     <Option value="O">管理人员</Option>
                 </Select>
-                <Button className='Button1' type="primary" >
+                <Button className='Button1' type="primary" onClick={addcard}>
                     Add Card
                 </Button>
                 <Button className='Button1' type="primary" danger>
@@ -28,6 +29,14 @@ function CardPage() {
             </div>
         </div>
     )
+}
+
+// 目前仍然属于测试状态
+function addcard(){
+    request('/card','POST',
+        {"name": "user",
+        "apartment": "计算机学院",
+        "type": "学生"})
 }
 
 export default CardPage;
