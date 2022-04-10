@@ -5,6 +5,7 @@ import BorrowPage from './page/BorrowPage/BorrowPage';
 import ReturnPage from './page/ReturnPage/ReturnPage';
 import QueryPage from './page/QueryPage/QueryPage';
 import CardPage from './page/CardPage/CardPage';
+import ImportPage from './page/ImportPage/ImportPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path='/return' element={<ReturnPage />} />
       <Route path='/query' element={<QueryPage />} />
       <Route path='/card' element={<CardPage />} />
+      <Route path='/import' element={<ImportPage />} />
     </Routes>
   );
 }

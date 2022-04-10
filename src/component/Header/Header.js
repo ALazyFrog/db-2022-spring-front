@@ -12,6 +12,11 @@ function Header(props) {
             管理员
           </a>
         </Menu.Item>
+        <Menu.Item key="import">
+          <a href="./import" target="_self" rel="noopener noreferrer">
+            导入
+          </a>
+        </Menu.Item>
         <Menu.Item key="borrow">
           <a href="./borrow" target="_self" rel="noopener noreferrer">
             借书
