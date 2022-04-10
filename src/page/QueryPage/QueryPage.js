@@ -83,10 +83,7 @@ function QueryPage() {
                 <Input className='InputBox' style={{width: '80%'}} placeholder="title" />
                 <Input className='InputBox' style={{width: '80%'}} placeholder="press" />
                 <Input.Group compact>
-                    <Select defaultValue="1">
-                        <Option value="1">year</Option>
-                    </Select>
-                    <Input style={{ width: 100, textAlign: 'center' }} placeholder="Minimum" />
+                    <Input addonBefore=" year " style={{ width: '26%', textAlign: 'center', marginLeft: '10%' }} placeholder="Minimum" />
                     <Input
                         className="site-input-split"
                         style={{
@@ -101,14 +98,40 @@ function QueryPage() {
                     <Input
                         className="site-input-right"
                         style={{
-                        width: 100,
+                        width: '20%',
                         textAlign: 'center',
                         }}
                         placeholder="Maximum"
                     />
                     </Input.Group>
                 <Input className='InputBox' style={{width: '80%'}} placeholder="author" />
-                <Input className='InputBox' style={{width: '80%'}} placeholder="price" />
+                <Input.Group compact>
+                    <Input addonBefore=" price " prefix="￥" style={{ width: '26%', textAlign: 'center',
+                             marginLeft: '10%'}} placeholder="Minimum" />
+                    <Input
+                        className="site-input-split"
+                        style={{
+                        width: 30,
+                        borderLeft: 0,
+                        borderRight: 0,
+                        pointerEvents: 'none',
+                        }}
+                        placeholder="~"
+                        disabled
+                    />
+                    <Input
+                        className="site-input-right"
+                        style={{
+                        width: '20%',
+                        textAlign: 'center',
+                        }}
+                        prefix="￥"
+                        placeholder="Maximum"
+                    />
+                    </Input.Group>
+                    <Button className='Button1' type="primary">
+                        Query
+                    </Button>
             </div>
             <Table className='table' columns={columns} dataSource={data} onChange={onChange} />
         </div>
