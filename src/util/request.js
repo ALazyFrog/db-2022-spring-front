@@ -1,5 +1,5 @@
 //TODO: 这里写网络请求函数
-const url_hear = 'http://6184-165-154-226-41.ngrok.io'
+const url_hear = 'http://110.42.175.148/library-0.0.1-SNAPSHOT'
 
 async function request(url = '', method = 'GET', data = {}) {
     url = url_hear + url;
