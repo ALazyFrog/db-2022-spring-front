@@ -1,7 +1,8 @@
 import './QueryPage.css';
 import Header from '../../component/Header/Header';
-import { Input, Slider, Switch, Button, Select } from 'antd';
+import { Input, Button, Select } from 'antd';
 import { Table } from 'antd';
+
 
 const columns = [
   {
@@ -73,37 +74,41 @@ function onChange(pagination, filters, sorter, extra) {
   console.log('params', pagination, filters, sorter, extra);
 }
 
-class SlideChoose extends React.Component {
-    state = {
-      disabled: false,
-    };
-  
-    handleDisabledChange = disabled => {
-      this.setState({ disabled });
-    };
-  
-    render() {
-      const { disabled } = this.state;
-      return (
-        <>
-          <Slider range defaultValue={[20, 50]} disabled={disabled} />
-          <Switch size="small" checked={disabled} onChange={this.handleDisabledChange} />
-        </>
-      );
-    }
-  }
-
 function QueryPage() {
     return(
         <div>
             <Header keyValue="query"/>
             <div className='border'>
-                <Input className='InputBox'  placeholder="category" />
-                <Input className='InputBox'  placeholder="title" />
-                <Input className='InputBox'  placeholder="press" />
-                <SlideChoose />
-                <Input className='InputBox'  placeholder="author" />
-                <Input className='InputBox'  placeholder="price" />
+                <Input className='InputBox' style={{width: '80%'}}  placeholder="category" />
+                <Input className='InputBox' style={{width: '80%'}} placeholder="title" />
+                <Input className='InputBox' style={{width: '80%'}} placeholder="press" />
+                <Input.Group compact>
+                    <Select defaultValue="1">
+                        <Option value="1">year</Option>
+                    </Select>
+                    <Input style={{ width: 100, textAlign: 'center' }} placeholder="Minimum" />
+                    <Input
+                        className="site-input-split"
+                        style={{
+                        width: 30,
+                        borderLeft: 0,
+                        borderRight: 0,
+                        pointerEvents: 'none',
+                        }}
+                        placeholder="~"
+                        disabled
+                    />
+                    <Input
+                        className="site-input-right"
+                        style={{
+                        width: 100,
+                        textAlign: 'center',
+                        }}
+                        placeholder="Maximum"
+                    />
+                    </Input.Group>
+                <Input className='InputBox' style={{width: '80%'}} placeholder="author" />
+                <Input className='InputBox' style={{width: '80%'}} placeholder="price" />
             </div>
             <Table className='table' columns={columns} dataSource={data} onChange={onChange} />
         </div>
