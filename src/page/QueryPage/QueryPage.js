@@ -2,6 +2,7 @@ import './QueryPage.css';
 import Header from '../../component/Header/Header';
 import { Input, Button, Select } from 'antd';
 import { Table } from 'antd';
+import request from '../../util/request';
 
 
 const columns = [
@@ -129,7 +130,7 @@ function QueryPage() {
                         placeholder="Maximum"
                     />
                     </Input.Group>
-                    <Button className='Button1' type="primary">
+                    <Button className='Button1' type="primary" onClick={() =>{var response = request('','GET'); }}>
                         Query
                     </Button>
             </div>
