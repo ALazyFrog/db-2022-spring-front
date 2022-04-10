@@ -2,20 +2,17 @@ import "./AdminPage.css";
 import Header from "../../component/Header/Header";
 import { Input, Button } from "antd";
 import {
-  EyeInvisibleOutlined,
-  EyeTwoTone,
   UserOutlined,
-  LockOutlined,
-  CreditCardOutlined,
+  LockOutlined
 } from "@ant-design/icons";
 import { useState } from "react";
 import request from "../../util/request";
 
 function AdminPage() {
 
-const [isLogin, setIsLogin] = useState(false);
-const [aid, setAid] = useState("");
-const [password, setPassword] = useState("");
+  const [isLogin, setIsLogin] = useState(false);
+  const [aid, setAid] = useState("");
+  const [password, setPassword] = useState("");
 
   let login = (
     <div className="border">
@@ -36,17 +33,19 @@ const [password, setPassword] = useState("");
       <Button
         className="Button"
         type="primary"
-        onClick={()=>request('/token',"POST",
-            {"aid": "001",
-            "password": "123456"}).then((response)=>{
-                console.log(response);
-                if (response.code == '0'){
-                    setIsLogin(true);
-                    console.log(response)
-                    localStorage.setItem("token",response.data[0].token);
-                    console.log(localStorage.getItem("token"))
-                } 
-            })}
+        onClick={() => request('/token', "POST",
+          {
+            "aid": "001",
+            "password": "123456"
+          }).then((response) => {
+            console.log(response);
+            if (response.code == '0') {
+              setIsLogin(true);
+              console.log(response)
+              localStorage.setItem("token", response.data[0].token);
+              console.log(localStorage.getItem("token"))
+            }
+          })}
       >
         Sign in
       </Button>
