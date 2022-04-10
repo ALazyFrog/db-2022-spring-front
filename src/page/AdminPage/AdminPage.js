@@ -12,31 +12,74 @@ import { useState } from "react";
 
 function AdminPage() {
   const [isLogin, setIsLogin] = useState(false);
+  const [aid, setAid] = useState("");
+  const [password, setPassword] = useState("");
+
   let login = (
     <div className="border">
       <Input
         className="InputBox"
         placeholder="username"
         prefix={<UserOutlined />}
+        onChange={(event) => {
+          setAid(event.target.value);
+        }}
       />
       <Input.Password
         className="InputBox"
         placeholder="password"
         prefix={<LockOutlined />}
+        onChange={(event) => { setPassword(event.target.value) }}
       />
       <Button
         className="Button"
         type="primary"
         onClick={() => {
-          // TODO: judge if login
-          setIsLogin(true);
+          // TODO: 这里可能需要后端的数据来判断？
+          if (aid.toString() == "a001" && password.toString() == "123456") {
+            setIsLogin(true);
+          }
         }}
       >
         Sign in
       </Button>
     </div>
   );
-  let adminInfo = <div>雷猴哇，唔系管理员</div>;
+  let adminInfo = (
+    <div className="border">
+      {aid},登入成功!
+      <Input
+        className="InputBox"
+        placeholder="aid"
+        block
+      />
+      <Input
+        className="InputBox"
+        placeholder="name"
+        block
+      />
+      <Input
+        className="InputBox"
+        placeholder="email"
+        block
+      />
+      <Input.Password
+        className="InputBox"
+        placeholder="password"
+        block
+      />
+      <Button
+        className="Button"
+        type="primary"
+        onClick={() => {
+          // TODO: 留一个新建管理员的坑位
+        }}
+      >
+        ADD
+      </Button>
+    </div>
+
+  );
   return (
     <div>
       <Header keyValue="admin" />
