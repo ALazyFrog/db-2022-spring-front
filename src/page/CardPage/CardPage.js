@@ -36,7 +36,7 @@ function addcard(){
     request('/card','POST',
         {"name": "user",
         "apartment": "计算机学院",
-        "type": "学生"})
+        "type": "学生"}).then(response=>console.log(response))
 }
 
 export default CardPage;

@@ -93,9 +93,6 @@ const [password, setPassword] = useState("");
   );
 }
 
-function adminLogin(){
-    
-}
 
 
 
