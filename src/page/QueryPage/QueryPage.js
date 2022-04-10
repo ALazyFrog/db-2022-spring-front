@@ -1,11 +1,111 @@
 import './QueryPage.css';
 import Header from '../../component/Header/Header';
+import { Input, Slider, Switch, Button, Select } from 'antd';
+import { Table } from 'antd';
+
+const columns = [
+  {
+    title: 'bid',
+    dataIndex: 'bid',
+    sorter: (a, b) => a.bid - b.bid,
+    defaultSortOrder: 'descend',
+  },
+  {
+    title: 'category',
+    dataIndex: 'category',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => a.category - b.category,
+  },
+  {
+    title: 'title',
+    dataIndex: 'title',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => a.title - b.title,
+  },
+  {
+    title: 'press',
+    dataIndex: 'press',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => a.press - b.press,
+  },
+  {
+    title: 'year',
+    dataIndex: 'year',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => a.year - b.year,
+  },
+  {
+    title: 'author',
+    dataIndex: 'author',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => a.author - b.author,
+  },
+  {
+    title: 'price',
+    dataIndex: 'price',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => a.price - b.price,
+  },
+  {
+    title: 'total',
+    dataIndex: 'total',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => a.total - b.total,
+  },
+  {
+    title: 'stock',
+    dataIndex: 'stock',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => a.stock - b.stock,
+  },
+];
+
+const data = [
+//   {
+//     key: '1',
+//     name: 'John Brown',
+//     age: 32,
+//     address: 'New York No. 1 Lake Park',
+//   },
+];
+
+function onChange(pagination, filters, sorter, extra) {
+  console.log('params', pagination, filters, sorter, extra);
+}
+
+class SlideChoose extends React.Component {
+    state = {
+      disabled: false,
+    };
+  
+    handleDisabledChange = disabled => {
+      this.setState({ disabled });
+    };
+  
+    render() {
+      const { disabled } = this.state;
+      return (
+        <>
+          <Slider range defaultValue={[20, 50]} disabled={disabled} />
+          <Switch size="small" checked={disabled} onChange={this.handleDisabledChange} />
+        </>
+      );
+    }
+  }
 
 function QueryPage() {
     return(
         <div>
             <Header keyValue="query"/>
-            QueryPage
+            <div className='border'>
+                <Input className='InputBox'  placeholder="category" />
+                <Input className='InputBox'  placeholder="title" />
+                <Input className='InputBox'  placeholder="press" />
+                <SlideChoose />
+                <Input className='InputBox'  placeholder="author" />
+                <Input className='InputBox'  placeholder="price" />
+            </div>
+            <Table className='table' columns={columns} dataSource={data} onChange={onChange} />
         </div>
     )
 }

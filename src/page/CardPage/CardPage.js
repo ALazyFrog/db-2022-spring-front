@@ -11,8 +11,8 @@ function CardPage() {
         <div>
             <Header keyValue="card" />
             <div className='border'>
-                <Input className='InputBox' size="large" placeholder="name" prefix={<UserOutlined />} />
-                <Input className='InputBox' size="large" placeholder="department" prefix={<HomeOutlined />} />
+                <Input className='InputBox' placeholder="name" prefix={<UserOutlined />} />
+                <Input className='InputBox' placeholder="department" prefix={<HomeOutlined />} />
                 <Select className='InputBox' placeholder="Identify" onChange={handleChange}>
                     <Option value="T">教师</Option>
                     <Option value="G">研究生</Option>

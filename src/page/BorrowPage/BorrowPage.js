@@ -10,8 +10,8 @@ function BorrowPage() {
         <div>
             <Header keyValue="borrow" />
             <div className='border'>
-                <Input className='InputBox' showCount maxLength={7} onChange={onChange} size="large" placeholder="cno" prefix={<CreditCardOutlined />} />
-                <Input className='InputBox' showCount maxLength={8} onChange={onChange} size="large" placeholder="bno" prefix={<BookOutlined />} />
+                <Input className='InputBox' showCount maxLength={7} onChange={onChange}  placeholder="cno" prefix={<CreditCardOutlined />} />
+                <Input className='InputBox' showCount maxLength={8} onChange={onChange}  placeholder="bno" prefix={<BookOutlined />} />
                 <DatePicker.RangePicker className='InputBox'/>
                 <Button className='Button' type="primary">
                     Borrow

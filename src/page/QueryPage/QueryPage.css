@@ -24,3 +24,11 @@
     margin-right: 30%;
     margin-top: 1%;
 }
+
+.table{
+    border:0.1em solid rgba(192, 187, 187, 0.5);
+    height: auto;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 1%;
+}
