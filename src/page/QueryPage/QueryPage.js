@@ -130,7 +130,8 @@ function QueryPage() {
                         placeholder="Maximum"
                     />
                     </Input.Group>
-                    <Button className='Button1' type="primary" onClick={() =>{var response = request('/book?title=算法导论','GET'); }}>
+                    <Button className='Button1' type="primary" onClick={() =>{
+                                request('/book?title=算法导论','GET').then(response=>console.log(response)); }}>
                         Query
                     </Button>
             </div>

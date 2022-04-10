@@ -42,7 +42,9 @@ const [password, setPassword] = useState("");
                 console.log(response);
                 if (response.code == '0'){
                     setIsLogin(true);
+                    console.log(response)
                     localStorage.setItem("token",response.data[0].token);
+                    console.log(localStorage.getItem("token"))
                 } 
             })}
       >
