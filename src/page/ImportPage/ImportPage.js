@@ -2,14 +2,21 @@ import './ImportPage.css';
 import Header from '../../component/Header/Header';
 import { Input, Button, Upload, message } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
+import { useState } from 'react';
 const onChange = e => {
     console.log('Change:', e.target.value);
 };
 
 
 function ImportPage() {
+    const [category, setCategory] = useState("");
+    const [title, setTitle] = useState("");
+    const [press, setPress] = useState("");
+    const [author, setAuthor] = useState("");
+    const [year, setYear] = useState(0);
+    const [price, setPrice] = useState("");
+    const [number, setNumber] = useState(0);
     const { Dragger } = Upload;
-
     const props = {
         name: 'file',
         multiple: true,
@@ -33,16 +40,15 @@ function ImportPage() {
         <div>
             <Header keyValue="import" />
             <div className='border'>
-                <Input className='InputBox' addonBefore="bid     " style={{ width: '90%' }} placeholder="bid" />
-                <Input className='InputBox' addonBefore="category" style={{ width: '90%' }} placeholder="category" />
-                <Input className='InputBox' addonBefore='title   ' style={{ width: '90%' }} placeholder="title" />
-                <Input className='InputBox' addonBefore='press   ' style={{ width: '90%' }} placeholder="press" />
-                <Input className='InputBox' addonBefore='year    ' style={{ width: '90%' }} placeholder="year" />
-                <Input className='InputBox' addonBefore='author  ' style={{ width: '90%' }} placeholder="author" />
-                <Input className='InputBox' addonBefore='price   ' style={{ width: '90%' }} placeholder="price" />
-                <Input className='InputBox' addonBefore='number  ' style={{ width: '90%' }} placeholder="number" />
+                <Input className='InputBox' addonBefore="category" style={{ width: '90%' }} placeholder="category" onChange={(event) => { setCategory(event.target.value) }} />
+                <Input className='InputBox' addonBefore='title   ' style={{ width: '90%' }} placeholder="title" onChange={(event) => { setTitle(event.target.value) }} />
+                <Input className='InputBox' addonBefore='press   ' style={{ width: '90%' }} placeholder="press" onChange={(event) => { setPress(event.target.value) }} />
+                <Input className='InputBox' addonBefore='year    ' style={{ width: '90%' }} placeholder="year" onChange={(event) => { setYear(event.target.value) }} />
+                <Input className='InputBox' addonBefore='author  ' style={{ width: '90%' }} placeholder="author" onChange={(event) => { setAuthor(event.target.value) }} />
+                <Input className='InputBox' addonBefore='price   ' style={{ width: '90%' }} placeholder="price" onChange={(event) => { setPrice(event.target.value) }} />
+                <Input className='InputBox' addonBefore='number  ' style={{ width: '90%' }} placeholder="number" onChange={(event) => { setNumber(event.target.value) }} />
 
-                <Button className='Button1' type="primary" >
+                <Button className='Button1' type="primary" onClick={() => { }}>
                     ADD
                 </Button>
             </div>
