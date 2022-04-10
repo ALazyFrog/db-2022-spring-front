@@ -9,12 +9,14 @@ function ReturnPage() {
     return (
         <div>
             <Header keyValue="return" />
-            <Input showCount maxLength={7} onChange={onChange} size="large" placeholder="cno" prefix={<CreditCardOutlined />} />
-            <Input showCount maxLength={8} onChange={onChange} size="large" placeholder="bno" prefix={<BookOutlined />} />
+            <div className='border'>
+                <Input className='InputBox' showCount maxLength={7} onChange={onChange} placeholder="cno" prefix={<CreditCardOutlined />} />
+                <Input className='InputBox' showCount maxLength={8} onChange={onChange} placeholder="bno" prefix={<BookOutlined />} />
 
-            <Button type="primary" block>
-                Return
-            </Button>
+                <Button className='Button' type="primary">
+                    Return
+                </Button>
+            </div>
         </div>
     )
 }

@@ -9,12 +9,15 @@ function BorrowPage() {
     return (
         <div>
             <Header keyValue="borrow" />
-            <Input showCount maxLength={7} onChange={onChange} size="large" placeholder="cno" prefix={<CreditCardOutlined />} />
-            <Input showCount maxLength={8} onChange={onChange} size="large" placeholder="bno" prefix={<BookOutlined />} />
-            <DatePicker.RangePicker size="large" style={{ width: '100%' }} />
-            <Button type="primary" block>
-                Borrow
-            </Button>
+            <div className='border'>
+                <Input className='InputBox' showCount maxLength={7} onChange={onChange} size="large" placeholder="cno" prefix={<CreditCardOutlined />} />
+                <Input className='InputBox' showCount maxLength={8} onChange={onChange} size="large" placeholder="bno" prefix={<BookOutlined />} />
+                <DatePicker.RangePicker className='InputBox'/>
+                <Button className='Button' type="primary">
+                    Borrow
+                </Button> 
+            </div>
+            
         </div>
     )
 }

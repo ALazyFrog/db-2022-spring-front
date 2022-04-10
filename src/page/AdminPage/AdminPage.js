@@ -6,11 +6,15 @@ function AdminPage() {
     return (
         <div>
             <Header keyValue="admin" />
-            <Input size="large" placeholder="user name" prefix={<UserOutlined />} />
-            <Input.Password size="large" placeholder="password" prefix={<LockOutlined />} />
-            <Button type="primary" block>
-                Sign in
-            </Button>
+            <div className='border'>
+                <Input className='InputBox' size="large" 
+                    placeholder="user name" prefix={<UserOutlined />} />
+                <Input.Password className='InputBox'  size="large" 
+                    placeholder="password" prefix={<LockOutlined />} />
+                <Button className='Button' type="primary">
+                    Sign in
+                </Button> 
+            </div>            
         </div>
 
     )
