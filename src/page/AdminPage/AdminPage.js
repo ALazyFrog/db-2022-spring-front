@@ -9,6 +9,7 @@ import {
   CreditCardOutlined,
 } from "@ant-design/icons";
 import { useState } from "react";
+import request from "../../util/request";
 
 function AdminPage() {
   const [isLogin, setIsLogin] = useState(false);
@@ -29,7 +30,7 @@ function AdminPage() {
         type="primary"
         onClick={() => {
           // TODO: judge if login
-          setIsLogin(true);
+          adminLogin();
         }}
       >
         Sign in
@@ -44,5 +45,18 @@ function AdminPage() {
     </div>
   );
 }
+
+function adminLogin(){
+    request('/token',"POST",
+    {"aid": "001",
+    "password": "123456"}).then((response)=>{
+        if (response.code == '0'){
+            setIsLogin(true);
+            localStorage.setItem("token",response.data[0].token);
+        } 
+    });
+}
+
+
 
 export default AdminPage;
