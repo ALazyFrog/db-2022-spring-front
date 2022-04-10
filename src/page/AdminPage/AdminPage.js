@@ -12,9 +12,10 @@ import { useState } from "react";
 import request from "../../util/request";
 
 function AdminPage() {
-  const [isLogin, setIsLogin] = useState(false);
-  const [aid, setAid] = useState("");
-  const [password, setPassword] = useState("");
+
+const [isLogin, setIsLogin] = useState(false);
+const [aid, setAid] = useState("");
+const [password, setPassword] = useState("");
 
   let login = (
     <div className="border">
@@ -35,12 +36,15 @@ function AdminPage() {
       <Button
         className="Button"
         type="primary"
-        onClick={() => {
-          // TODO: 这里可能需要后端的数据来判断？
-          if (aid.toString() == "a001" && password.toString() == "123456") {
-            setIsLogin(true);
-          }
-        }}
+        onClick={()=>request('/token',"POST",
+            {"aid": "001",
+            "password": "123456"}).then((response)=>{
+                console.log(response);
+                if (response.code == '0'){
+                    setIsLogin(true);
+                    localStorage.setItem("token",response.data[0].token);
+                } 
+            })}
       >
         Sign in
       </Button>
@@ -90,14 +94,7 @@ function AdminPage() {
 }
 
 function adminLogin(){
-    request('/token',"POST",
-    {"aid": "001",
-    "password": "123456"}).then((response)=>{
-        if (response.code == '0'){
-            setIsLogin(true);
-            localStorage.setItem("token",response.data[0].token);
-        } 
-    });
+    
 }
 
 
