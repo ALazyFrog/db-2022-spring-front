@@ -3,6 +3,7 @@ import Header from '../../component/Header/Header';
 import { Input, Button, Upload, message } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { useState } from 'react';
+import request from '../../util/request';
 const onChange = e => {
     console.log('Change:', e.target.value);
 };
@@ -49,7 +50,7 @@ function ImportPage() {
                 <Input className='InputBox' addonBefore='number  ' style={{ width: '90%' }} placeholder="number" onChange={(event) => { setNumber(event.target.value) }} />
 
                 <Button className='Button1' type="primary" onClick={() => {
-                    data = {
+                    let data = {
                         category : category,
                         title: title,
                         press: press,
@@ -59,7 +60,7 @@ function ImportPage() {
                         number: number
                     }
                     request("/book","POST",data).then(
-                        () => {
+                        (response) => {
                             console.log(response);
                             alert(response.message)
                         }

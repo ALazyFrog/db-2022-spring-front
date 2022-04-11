@@ -28,6 +28,7 @@ async function request(url = '', method = 'GET', data = {}) {
                 headers: header,
                 body: JSON.stringify(data)
               });
+              console.log(JSON.stringify(data))
             break;
         case 'delete':
             response = fetch(final_url, {
