@@ -13,7 +13,7 @@ async function request(url = '', method = 'GET', data = {}) {
     else{
         header = {"Authorization":localStorage.getItem('token')}
     }
-    console.log(header)
+    console.log(JSON.stringify(data))
     
     switch(method.toLowerCase()){
         case 'get':

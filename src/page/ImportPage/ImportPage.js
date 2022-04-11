@@ -54,7 +54,19 @@ function ImportPage() {
             </div>
             <div className='border'>
             <TextArea rows={4} placeholder="Input string in json format" />
-            <Button className='Button1' type="primary">submit</Button>
+            <Button className='Button1' type="primary" onClick={
+                () => {
+                    let json_data = '[{\"category\": \"计算机\",\"title\": \"深入理解计算机系统\",\"press\": \"机械工业出版社\",\"year\": 2012,\"author\": "不知道",\"price\": 65.00,\"total\": 2,\"stock\": 1},{\"category\": "计算机",\"title\": "算法导论",\"press\": "机械工业出版社",\"year\": 2012,\"author\": "不知道",\"price\": 65.00,\"total\": 2,\"stock\": 1}]'
+                    console.log(json_data)
+                    request("/book","POST",JSON.parse(json_data)).then(
+                        (response) => {
+                            console.log(response);
+                            alert(response.message)
+                        }
+                    )
+                }
+            }
+            >submit</Button>
             </div>
 
         </div>
