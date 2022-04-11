@@ -33,6 +33,11 @@ function ImportPage() {
                 <Input className='InputBox' addonBefore='number  ' style={{ width: '90%' }} placeholder="number" onChange={(event) => { setNumber(parseInt(event.target.value, 10)) }} />
 
                 <Button className='Button1' type="primary" onClick={() => {
+                    //不允许全空
+                    if(category ==""&&title==""&&press==""&&year==0&&author==""&&price==0&&number==0){
+                        alert("不允许导入空书籍！")
+                        return;
+                    }   
                     let data = [{
                         category: category,
                         title: title,
@@ -57,7 +62,7 @@ function ImportPage() {
                 <TextArea rows={4} placeholder="Input string in json format" onChange={(event) => { setText(event.target.value) }} />
                 <Button className='Button1' type="primary" onClick={
                     () => {
-                        let json_data = '[{\"category\": \"计算机\",\"title\": \"深入理解计算机系统\",\"press\": \"机械工业出版社\",\"year\": 2012,\"author\": "不知道",\"price\": 65.00,\"total\": 2,\"stock\": 1},{\"category\": "计算机",\"title\": "算法导论",\"press\": "机械工业出版社",\"year\": 2012,\"author\": "不知道",\"price\": 65.00,\"total\": 2,\"stock\": 1}]'
+                        let json_data = text;
                         console.log(json_data)
                         request("/book", "POST", JSON.parse(json_data)).then(
                             (response) => {
