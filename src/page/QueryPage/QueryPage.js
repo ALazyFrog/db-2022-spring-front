@@ -80,8 +80,8 @@ function QueryPage() {
   const [title, setTitle] = useState("");
   const [press, setPress] = useState("");
   const [author, setAuthor] = useState("");
-  const [minYear, setMinYear] = useState("");
-  const [maxYear, setMaxYear] = useState("");
+  const [minYear, setMinYear] = useState(0);
+  const [maxYear, setMaxYear] = useState(0);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
   return (
