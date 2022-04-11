@@ -13,6 +13,8 @@ function AdminPage() {
   const [isLogin, setIsLogin] = useState(false);
   const [aid, setAid] = useState("");
   const [password, setPassword] = useState("");
+  const [aid_1, setAid_1] = useState("");
+  const [password_1, setPassword_1] = useState("");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
 
@@ -66,7 +68,7 @@ function AdminPage() {
       <Input
         className="InputBoxAdmin"
         placeholder="aid"
-        onChange={(event) => { setAid(event.target.value) }}
+        onChange={(event) => { setAid_1(event.target.value) }}
       />
       <Input
         className="InputBoxAdmin"
@@ -81,14 +83,14 @@ function AdminPage() {
       <Input.Password
         className="InputBoxAdmin"
         placeholder="password"
-        onChange={(event) => { setPassword(event.target.value) }}
+        onChange={(event) => { setPassword_1(event.target.value) }}
       />
       <Button
         className="ButtonAdmin"
         type="primary"
         onClick={() => {
           // TODO: 留一个新建管理员的坑位
-          request("/admin","POST",{"aid":aid,"name":name,"email":email,"password":password}).then(
+          request("/admin","POST",{"aid":aid_1,"name":name,"email":email,"password":password_1}).then(
               (response) => {
                 alert(response.message)
               }
