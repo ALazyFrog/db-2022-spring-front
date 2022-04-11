@@ -1,13 +1,72 @@
 import './BorrowPage.css';
 import Header from '../../component/Header/Header';
-import { Input, Button, DatePicker } from 'antd';
+import { Input, Button, Table } from 'antd';
 import { CreditCardOutlined, BookOutlined } from '@ant-design/icons';
 import { useState } from "react";
+import request from '../../util/request';
+
+const columns = [
+    {
+      title: 'bid',
+      dataIndex: 'bid',
+      sorter: (a, b) => a.bid - b.bid,
+      defaultSortOrder: 'descend',
+    },
+    {
+      title: 'category',
+      dataIndex: 'category',
+      defaultSortOrder: 'descend',
+      sorter: (a, b) => a.category - b.category,
+    },
+    {
+      title: 'title',
+      dataIndex: 'title',
+      defaultSortOrder: 'descend',
+      sorter: (a, b) => a.title - b.title,
+    },
+    {
+      title: 'press',
+      dataIndex: 'press',
+      defaultSortOrder: 'descend',
+      sorter: (a, b) => a.press - b.press,
+    },
+    {
+      title: 'year',
+      dataIndex: 'year',
+      defaultSortOrder: 'descend',
+      sorter: (a, b) => a.year - b.year,
+    },
+    {
+      title: 'author',
+      dataIndex: 'author',
+      defaultSortOrder: 'descend',
+      sorter: (a, b) => a.author - b.author,
+    },
+    {
+      title: 'price',
+      dataIndex: 'price',
+      defaultSortOrder: 'descend',
+      sorter: (a, b) => a.price - b.price,
+    },
+    {
+      title: 'total',
+      dataIndex: 'total',
+      defaultSortOrder: 'descend',
+      sorter: (a, b) => a.total - b.total,
+    },
+    {
+      title: 'stock',
+      dataIndex: 'stock',
+      defaultSortOrder: 'descend',
+      sorter: (a, b) => a.stock - b.stock,
+    },
+  ];
+
+var data = [];  //table use
 
 function BorrowPage() {
     const [bno, setBno] = useState("");
     const [cno, setCno] = useState("");
-    const [date, setDate] = useState(["", ""]);// return like: ['2022-04-30', '2022-05-31'] 打包部分仍未完成
 
     return (
         <div>
@@ -15,14 +74,30 @@ function BorrowPage() {
             <div className='border'>
                 <Input className='InputBox' showCount maxLength={7} onChange={(event) => { setCno(event.target.value) }} placeholder="cno" prefix={<CreditCardOutlined />} />
                 <Input className='InputBox' showCount maxLength={8} onChange={(event) => { setBno(event.target.value) }} placeholder="bno" prefix={<BookOutlined />} />
-                <DatePicker.RangePicker className='InputBox' format="YYYY-MM-DD" onChange={(date, dateString) => { setDate(dateString); }} />
                 <Button className='Button' type="primary" onClick={() => {
-                    // TODO: 留一个提交数据的坑位
+                    if(bno != "" && cno != ""){
+                        request("/borrow",'POST',{"cid":cno,"bid":bno,"aid":localStorage.getItem("aid")}).then(
+                            (response) => {
+                                alert(response.message)
+                            }
+                        )
+                    }else if (cno != "" && bno == ""){
+                        request("/borrow/"+cno,'GET',).then(
+                            (response) => {
+                                if(response.code != 0){
+                                     alert(response.message)
+                                }else{
+                                    data = response.data;
+                                }
+                               
+                            }
+                        )
+                    }
                 }}>
                     Borrow
                 </Button>
             </div>
-
+            <Table className='table' columns={columns} dataSource={data}/>        
         </div>
     )
 }
