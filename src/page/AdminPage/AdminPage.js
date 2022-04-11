@@ -43,6 +43,7 @@ function AdminPage() {
               setIsLogin(true);
               console.log(response)
               localStorage.setItem("token", response.data[0].token);
+              localStorage.setItem("aid",aid);
               console.log(localStorage.getItem("token"))
             }
             else {
