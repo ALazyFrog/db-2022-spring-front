@@ -92,7 +92,7 @@ function QueryPage() {
         <Input className='InputBox' style={{ width: '90%' }} placeholder="title" onChange={(event) => { setTitle(event.target.value) }} />
         <Input className='InputBox' style={{ width: '90%' }} placeholder="press" onChange={(event) => { setPress(event.target.value) }} />
         <Input.Group compact>
-          <Input addonBefore=" year " style={{ width: '26%', textAlign: 'center', marginLeft: '5%' }} placeholder="Minimum" onChange={(event) => { setMinYear(event.target.value) }} />
+          <Input addonBefore=" year " style={{ width: '26%', textAlign: 'center', marginLeft: '5%' }} placeholder="Minimum" onChange={(event) => { setMinYear(parseInt(event.target.value, 10)) }} />
           <Input
             className="site-input-split"
             style={{
@@ -111,15 +111,16 @@ function QueryPage() {
               textAlign: 'center',
             }}
             placeholder="Maximum"
-            onChange={(event) => { setMaxYear(event.target.value) }}
+            onChange={(event) => { setMaxYear(parseInt(event.target.value, 10)); }}
           />
+
         </Input.Group>
         <Input className='InputBox' style={{ width: '90%' }} placeholder="author" onChange={(event) => { setAuthor(event.target.value) }} />
         <Input.Group compact>
           <Input addonBefore=" price " prefix="￥" style={{
             width: '26%', textAlign: 'center',
             marginLeft: '5%'
-          }} placeholder="Minimum" onChange={(event) => { setMinPrice(event.target.value) }} />
+          }} placeholder="Minimum" onChange={(event) => { setMinPrice(parseFloat(event.target.value)) }} />
           <Input
             className="site-input-split"
             style={{
@@ -139,7 +140,7 @@ function QueryPage() {
             }}
             prefix="￥"
             placeholder="Maximum"
-            onChange={(event) => { setMaxPrice(event.target.value) }}
+            onChange={(event) => { setMaxPrice(parseFloat(event.target.value)) }}
           />
         </Input.Group>
         <Button className='Button1' type="primary" onClick={() => {
