@@ -18,7 +18,7 @@ function AdminPage() {
     <div className="border">
       <Input
         className="InputBox"
-        placeholder="username"
+        placeholder="aid"
         prefix={<UserOutlined />}
         onChange={(event) => {
           setAid(event.target.value);
@@ -30,6 +30,7 @@ function AdminPage() {
         prefix={<LockOutlined />}
         onChange={(event) => { setPassword(event.target.value) }}
       />
+
       <Button
         className="Button"
         type="primary"
@@ -43,7 +44,7 @@ function AdminPage() {
               setIsLogin(true);
               console.log(response)
               localStorage.setItem("token", response.data[0].token);
-              localStorage.setItem("aid",aid);
+              localStorage.setItem("aid", aid);
               console.log(localStorage.getItem("token"))
             }
             else {
@@ -57,7 +58,7 @@ function AdminPage() {
   );
   let adminInfo = (
     <div className="border">
-    {aid},登入成功!) 
+      {aid},登入成功!)
       <Input
         className="InputBox"
         placeholder="aid"
