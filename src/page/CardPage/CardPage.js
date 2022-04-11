@@ -26,7 +26,7 @@ function CardPage() {
                 <Button className='Button1' type="primary" onClick={() => {
                     request("/card","POST",{"name":name,"department":department,"type":type}).then(
                         (response) => {
-                            alert(response.message);
+                            alert(response.message+", 您的卡号是: "+response.data[0]);
                         }
                     )
                 }}>
