@@ -35,8 +35,8 @@ function AdminPage() {
         type="primary"
         onClick={() => request('/token', "POST",
           {
-            "aid": "001",
-            "password": "123456"
+            "aid": aid,
+            "password": password
           }).then((response) => {
             console.log(response);
             if (response.code == '0') {
@@ -44,6 +44,9 @@ function AdminPage() {
               console.log(response)
               localStorage.setItem("token", response.data[0].token);
               console.log(localStorage.getItem("token"))
+            }
+            else {
+              alert(response.message);
             }
           })}
       >
