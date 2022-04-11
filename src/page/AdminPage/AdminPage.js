@@ -1,6 +1,6 @@
 import "./AdminPage.css";
 import Header from "../../component/Header/Header";
-import { Input, Button } from "antd";
+import { Input, Button, Alert } from "antd";
 import {
   UserOutlined,
   LockOutlined
@@ -57,37 +57,36 @@ function AdminPage() {
     </div>
   );
   let adminInfo = (
-    <div className="border">
-      {aid},登入成功!)
+      <div>
+      <Alert message={"欢迎您，管理员"+aid} type="success" showIcon />
+      <br />
+      <div className="border">
       <Input
-        className="InputBox"
+        className="InputBoxAdmin"
         placeholder="aid"
-        block
       />
       <Input
-        className="InputBox"
+        className="InputBoxAdmin"
         placeholder="name"
-        block
       />
       <Input
-        className="InputBox"
+        className="InputBoxAdmin"
         placeholder="email"
-        block
       />
       <Input.Password
-        className="InputBox"
+        className="InputBoxAdmin"
         placeholder="password"
-        block
       />
       <Button
-        className="Button"
+        className="ButtonAdmin"
         type="primary"
         onClick={() => {
           // TODO: 留一个新建管理员的坑位
         }}
       >
-        ADD
+        ADD NEW ADMIN
       </Button>
+    </div>
     </div>
 
   );
