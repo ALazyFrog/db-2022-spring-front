@@ -48,7 +48,23 @@ function ImportPage() {
                 <Input className='InputBox' addonBefore='price   ' style={{ width: '90%' }} placeholder="price" onChange={(event) => { setPrice(event.target.value) }} />
                 <Input className='InputBox' addonBefore='number  ' style={{ width: '90%' }} placeholder="number" onChange={(event) => { setNumber(event.target.value) }} />
 
-                <Button className='Button1' type="primary" onClick={() => { }}>
+                <Button className='Button1' type="primary" onClick={() => {
+                    data = {
+                        category : category,
+                        title: title,
+                        press: press,
+                        year: year,
+                        author: author,
+                        price: price,
+                        number: number
+                    }
+                    request("/book","POST",data).then(
+                        () => {
+                            console.log(response);
+                            alert(response.message)
+                        }
+                    )
+                 }}>
                     ADD
                 </Button>
             </div>
