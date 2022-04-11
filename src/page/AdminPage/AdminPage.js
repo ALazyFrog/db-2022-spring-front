@@ -56,7 +56,7 @@ function AdminPage() {
   );
   let adminInfo = (
     <div className="border">
-      {aid},登入成功!
+    {aid},登入成功!) 
       <Input
         className="InputBox"
         placeholder="aid"

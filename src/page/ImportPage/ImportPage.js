@@ -50,7 +50,7 @@ function ImportPage() {
                 <Input className='InputBox' addonBefore='number  ' style={{ width: '90%' }} placeholder="number" onChange={(event) => { setNumber(parseInt(event.target.value, 10)) }} />
 
                 <Button className='Button1' type="primary" onClick={() => {
-                    let data = {
+                    let data = [{
                         category: category,
                         title: title,
                         press: press,
@@ -59,7 +59,7 @@ function ImportPage() {
                         price: price,
                         total: number,
                         stock: number
-                    }
+                    }]
                     request("/book", "POST", data).then(
                         (response) => {
                             console.log(response);

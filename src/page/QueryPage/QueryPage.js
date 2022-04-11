@@ -62,7 +62,7 @@ const columns = [
   },
 ];
 
-const data = [
+var data = [
   //   {
   //     key: '1',
   //     name: 'John Brown',
@@ -143,9 +143,29 @@ function QueryPage() {
             onChange={(event) => { setMaxPrice(parseFloat(event.target.value)) }}
           />
         </Input.Group>
-        <Button className='Button1' type="primary" onClick={() => {
-          request('/book?title=算法导论', 'GET').then(response => console.log(response));
-        }}>
+        <Button className='Button1' type="primary" onClick={
+            () => {
+                let url = '/book?'
+                url += 'year='+minYear + maxYear==0?9999:maxYear;
+                url += '&price'+minPrice + maxPrice==0?9999:maxPrice;
+                if(category != '') url += '&category=' + category;
+                if(title != '') url += '&title=' + title;
+                if(press != '') url += '&press=' + press;
+                if(author != '') url += '&author=' + author;       
+                request(url,'GET').then(
+                    (response) => {
+                        if(response.code != 0)
+                            alert(response.message)
+                        else{
+                            data = []
+                            for(let book in response.data)
+                                data.push(response.data[book])
+                        }
+                    }
+                )
+
+            }
+        }>
           Query
         </Button>
       </div>
