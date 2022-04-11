@@ -10,6 +10,7 @@ function CardPage() {
     const [name, setName] = useState("");
     const [department, setDepartment] = useState("");
     const [type, setType] = useState("");
+    const [cno, setCno] = useState("");
     return (
         <div>
             <Header keyValue="card" />
@@ -22,25 +23,30 @@ function CardPage() {
                     <Option value="U">本科生</Option>
                     <Option value="O">管理人员</Option>
                 </Select>
-                <Button className='Button1' type="primary" onClick={addcard}>
+                <Button className='Button1' type="primary" onClick={() => {
+                    request("/card","POST",{"name":name,"department":department,"type":type}).then(
+                        (response) => {
+                            alert(response.message);
+                        }
+                    )
+                }}>
                     Add Card
                 </Button>
-                <Button className='Button1' type="primary" danger>
+                <br />
+                <br />
+                <Input className='InputBox' placeholder="cno" prefix={<HomeOutlined />} onChange={(event) => { setCno(event.target.value) }} />
+                <Button className='Button1' type="primary" danger onClick={() => {
+                    request("/card/"+cno,"DELETE").then(
+                        (response)=>{
+                            alert(response.message);
+                        }
+                    )
+                }}>
                     Delete Card
                 </Button>
             </div>
         </div>
     )
-}
-
-// 目前仍然属于测试状态
-function addcard() {
-    request('/card', 'POST',
-        {
-            "name": "user",
-            "apartment": "计算机学院",
-            "type": "学生"
-        }).then(response => console.log(response))
 }
 
 export default CardPage;

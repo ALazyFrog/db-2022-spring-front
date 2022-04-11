@@ -18,7 +18,7 @@ async function request(url = '', method = 'GET', data = {}) {
     switch(method.toLowerCase()){
         case 'get':
             response = await fetch(final_url, {
-                method: 'Get', 
+                method: 'GET', 
                 headers: header,
               });
             break;
@@ -31,13 +31,13 @@ async function request(url = '', method = 'GET', data = {}) {
               console.log(JSON.stringify(data))
             break;
         case 'delete':
-            response = fetch(final_url, {
+            response = await fetch(final_url, {
                 method: 'DELETE',
                 headers: header, 
               });
             break;
         case 'put':
-            response = fetch(final_url, {
+            response = await fetch(final_url, {
                 method: 'PUT', 
                 headers: header,
                 body: JSON.stringify(data)
