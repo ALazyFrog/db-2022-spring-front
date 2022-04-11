@@ -54,7 +54,7 @@ function ImportPage() {
                 </Button>
             </div>
             <div className='border'>
-                <TextArea rows={4} placeholder="Input string in json format" />
+                <TextArea rows={4} placeholder="Input string in json format" onChange={(event) => { setText(event.target.value) }} />
                 <Button className='Button1' type="primary" onClick={
                     () => {
                         let json_data = '[{\"category\": \"计算机\",\"title\": \"深入理解计算机系统\",\"press\": \"机械工业出版社\",\"year\": 2012,\"author\": "不知道",\"price\": 65.00,\"total\": 2,\"stock\": 1},{\"category\": "计算机",\"title\": "算法导论",\"press\": "机械工业出版社",\"year\": 2012,\"author\": "不知道",\"price\": 65.00,\"total\": 2,\"stock\": 1}]'

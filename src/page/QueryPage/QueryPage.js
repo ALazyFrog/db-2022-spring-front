@@ -62,14 +62,7 @@ const columns = [
   },
 ];
 
-var data = [
-  //   {
-  //     key: '1',
-  //     name: 'John Brown',
-  //     age: 32,
-  //     address: 'New York No. 1 Lake Park',
-  //   },
-];
+
 
 function onChange(pagination, filters, sorter, extra) {
   console.log('params', pagination, filters, sorter, extra);
@@ -84,6 +77,7 @@ function QueryPage() {
   const [maxYear, setMaxYear] = useState(0);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(0);
+  const [data, setData] = useState([]);
   return (
     <div>
       <Header keyValue="query" />
@@ -144,27 +138,25 @@ function QueryPage() {
           />
         </Input.Group>
         <Button className='Button1' type="primary" onClick={
-            () => {
-                let url = '/book?'
-                url += 'year='+minYear + maxYear==0?9999:maxYear;
-                url += '&price'+minPrice + maxPrice==0?9999:maxPrice;
-                if(category != '') url += '&category=' + category;
-                if(title != '') url += '&title=' + title;
-                if(press != '') url += '&press=' + press;
-                if(author != '') url += '&author=' + author;       
-                request(url,'GET').then(
-                    (response) => {
-                        if(response.code != 0)
-                            alert(response.message)
-                        else{
-                            data = []
-                            for(let book in response.data)
-                                data.push(response.data[book])
-                        }
-                    }
-                )
+          () => {
+            let url = '/book?'
+            url += 'year=' + minYear + maxYear == 0 ? 9999 : maxYear;
+            url += '&price' + minPrice + maxPrice == 0 ? 9999 : maxPrice;
+            if (category != '') url += '&category=' + category;
+            if (title != '') url += '&title=' + title;
+            if (press != '') url += '&press=' + press;
+            if (author != '') url += '&author=' + author;
+            request(url, 'GET').then(
+              (response) => {
+                if (response.code != 0)
+                  alert(response.message)
+                else {
+                  setData(response.data)
+                }
+              }
+            )
 
-            }
+          }
         }>
           Query
         </Button>
