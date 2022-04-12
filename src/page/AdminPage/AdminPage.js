@@ -5,7 +5,7 @@ import {
   UserOutlined,
   LockOutlined
 } from "@ant-design/icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import request from "../../util/request";
 
 function AdminPage() {
@@ -18,6 +18,14 @@ function AdminPage() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
 
+  useEffect(() => {
+    if (localStorage.getItem("token") == null) {
+      setIsLogin(false);
+    }
+    else {
+      setIsLogin(true);
+    }
+  })
   let login = (
     <div className="border">
       <Input
@@ -51,6 +59,9 @@ function AdminPage() {
               localStorage.setItem("aid", aid);
               console.log(localStorage.getItem("token"))
             }
+            else if (response.code == '4' || response.code == '5') {
+              localStorage.removeItem("token");
+            }
             else {
               alert(response.message);
             }
@@ -61,45 +72,50 @@ function AdminPage() {
     </div>
   );
   let adminInfo = (
-      <div>
-      <Alert message={"欢迎您，管理员"+aid} type="success" showIcon />
+    <div>
+      <Alert message={"欢迎您，管理员" + aid} type="success" showIcon />
       <br />
       <div className="border">
-      <Input
-        className="InputBoxAdmin"
-        placeholder="aid"
-        onChange={(event) => { setAid_1(event.target.value) }}
-      />
-      <Input
-        className="InputBoxAdmin"
-        placeholder="name"
-        onChange={(event) => { setName(event.target.value) }}
-      />
-      <Input
-        className="InputBoxAdmin"
-        placeholder="email"
-        onChange={(event) => { setEmail(event.target.value) }}
-      />
-      <Input.Password
-        className="InputBoxAdmin"
-        placeholder="password"
-        onChange={(event) => { setPassword_1(event.target.value) }}
-      />
-      <Button
-        className="ButtonAdmin"
-        type="primary"
-        onClick={() => {
-          // TODO: 留一个新建管理员的坑位
-          request("/admin","POST",{"aid":aid_1,"name":name,"email":email,"password":password_1}).then(
+        <Input
+          className="InputBoxAdmin"
+          placeholder="aid"
+          onChange={(event) => { setAid_1(event.target.value) }}
+        />
+        <Input
+          className="InputBoxAdmin"
+          placeholder="name"
+          onChange={(event) => { setName(event.target.value) }}
+        />
+        <Input
+          className="InputBoxAdmin"
+          placeholder="email"
+          onChange={(event) => { setEmail(event.target.value) }}
+        />
+        <Input.Password
+          className="InputBoxAdmin"
+          placeholder="password"
+          onChange={(event) => { setPassword_1(event.target.value) }}
+        />
+        <Button
+          className="ButtonAdmin"
+          type="primary"
+          onClick={() => {
+            // TODO: 留一个新建管理员的坑位
+            request("/admin", "POST", { "aid": aid_1, "name": name, "email": email, "password": password_1 }).then(
               (response) => {
-                alert(response.message)
+                if (response.code == '4' || response.code == '5') {
+                  localStorage.removeItem("token");
+                }
+                else {
+                  alert(response.message)
+                }
               }
-          )
-        }}
-      >
-        ADD NEW ADMIN
-      </Button>
-    </div>
+            )
+          }}
+        >
+          ADD NEW ADMIN
+        </Button>
+      </div>
     </div>
 
   );

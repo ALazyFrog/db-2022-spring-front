@@ -78,13 +78,23 @@ function BorrowPage() {
           if (bno != "" && cno != "") {
             request("/borrow", 'POST', { "cid": cno, "bid": bno, "aid": localStorage.getItem("aid") }).then(
               (response) => {
-                alert(response.message)
+                if (response.code == '4' || response.code == '5') {
+                  localStorage.removeItem("token");
+                }
+                else if (response.code != '0') {
+                  alert(response.message)
+                }
               }
             )
           } else if (cno != "" && bno == "") {
             request("/borrow/" + cno, 'GET',).then(
               (response) => {
-                if (response.code != 0) {
+                if (response.code == '4' || response.code == '5') {
+                  localStorage.removeItem("token");
+                  alert(response.message);
+                  window.location.replace('./');
+                }
+                else if (response.code != '0') {
                   alert(response.message)
                 } else {
                   setData(response.data)

@@ -148,7 +148,12 @@ function QueryPage() {
             if (author != '') url += '&author=' + author;
             request(url, 'GET').then(
               (response) => {
-                if (response.code != 0)
+                if (response.code == '4' || response.code == '5') {
+                  localStorage.removeItem("token");
+                  alert(response.message);
+                  window.location.replace('./');
+                }
+                else if (response.code != '0')
                   alert(response.message)
                 else {
                   setData(response.data)

@@ -34,10 +34,10 @@ function ImportPage() {
 
                 <Button className='Button1' type="primary" onClick={() => {
                     //不允许全空
-                    if(category ==""&&title==""&&press==""&&year==0&&author==""&&price==0&&number==0){
+                    if (category == "" && title == "" && press == "" && year == 0 && author == "" && price == 0 && number == 0) {
                         alert("不允许导入空书籍！")
                         return;
-                    }   
+                    }
                     let data = [{
                         category: category,
                         title: title,
@@ -50,8 +50,15 @@ function ImportPage() {
                     }]
                     request("/book", "POST", data).then(
                         (response) => {
-                            console.log(response);
-                            alert(response.message)
+                            if (response.code == '4' || response.code == '5') {
+                                localStorage.removeItem("token");
+                                alert(response.message);
+                                window.location.replace('./');
+                            }
+                            else if (response.code != '0') {
+                                console.log(response);
+                                alert(response.message)
+                            }
                         }
                     )
                 }}>
@@ -66,8 +73,15 @@ function ImportPage() {
                         console.log(json_data)
                         request("/book", "POST", JSON.parse(json_data)).then(
                             (response) => {
-                                console.log(response);
-                                alert(response.message)
+                                if (response.code == '4' || response.code == '5') {
+                                    localStorage.removeItem("token");
+                                    alert(response.message);
+                                    window.location.replace('./');
+                                }
+                                else if (response.code != '0') {
+                                    console.log(response);
+                                    alert(response.message)
+                                }
                             }
                         )
                     }

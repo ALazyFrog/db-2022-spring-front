@@ -24,9 +24,20 @@ function CardPage() {
                     <Option value="O">管理人员</Option>
                 </Select>
                 <Button className='Button1' type="primary" onClick={() => {
-                    request("/card","POST",{"name":name,"department":department,"type":type}).then(
+                    request("/card", "POST", { "name": name, "department": department, "type": type }).then(
                         (response) => {
-                            alert(response.message+", 您的卡号是: "+response.data[0]);
+                            if (response.code == '4' || response.code == '5') {
+                                localStorage.removeItem("token");
+                                alert(response.message);
+                                window.location.replace('./');
+                            }
+                            else if (response.code == '0') {
+                                alert(response.message + ", 您的卡号是: " + response.data[0]);
+                            }
+                            else {
+                                alert(response.message);
+                            }
+
                         }
                     )
                 }}>
@@ -36,16 +47,28 @@ function CardPage() {
                 <br />
                 <Input className='InputBox' placeholder="cno" prefix={<HomeOutlined />} onChange={(event) => { setCno(event.target.value) }} />
                 <Button className='Button1' type="primary" danger onClick={() => {
-                    request("/card/"+cno,"DELETE").then(
-                        (response)=>{
-                            alert(response.message);
-                        }
-                    )
+                    if (cno != "") {
+                        request("/card/" + cno, "DELETE").then(
+                            (response) => {
+                                if (response.code == '4' || response.code == '5') {
+                                    localStorage.removeItem("token");
+                                    alert(response.message);
+                                    window.location.replace('./');
+
+                                }
+                                else if (response.code != '0')
+                                    alert(response.message)
+                            }
+                        )
+                    }
+                    else {
+                        alert('cno不可为空!');
+                    }
                 }}>
                     Delete Card
                 </Button>
             </div>
-        </div>
+        </div >
     )
 }
 
