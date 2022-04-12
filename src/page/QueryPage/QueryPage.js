@@ -141,7 +141,7 @@ function QueryPage() {
           () => {
             let url = '/book?'
             url += 'year=' + minYear + "," + (maxYear == 0 ? 9999 : maxYear);
-            url += '&price' + minPrice + "," + (maxPrice == 0 ? 9999 : maxPrice);
+            url += '&price=' + minPrice + "," + (maxPrice == 0 ? 9999 : maxPrice);
             if (category != '') url += '&category=' + category;
             if (title != '') url += '&title=' + title;
             if (press != '') url += '&press=' + press;
